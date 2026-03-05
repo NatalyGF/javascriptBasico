@@ -26,5 +26,9 @@ const isFemenine = true;
 
 console.log("La descripción de esta persona es: Su nombre y apellido es: ", yourName + " " + lastName +" tiene "+ currentAge + " años, su estatura es "+ estatura + " centimetros" + " y es mujer? "+ isFemenine)
 
+//Mi segundo commit
+
+console.log("¡Vamos " + yourName + " si se puede!")
+
 
 
