@@ -205,18 +205,130 @@ let resultado2=0;
 
 if(age3>0 && age3<12){
     resultado2 = 3
+    if(dia==="martes"){
+        resultado2= resultado2*0.5
+        console.log("El precio final es $" + resultado2)
+    }else{
+        console.log("El precio final es $" + resultado2)
+    }
 }else if(age3>65){
     resultado2 = 4
+    if(dia==="martes"){
+        resultado2= resultado2*0.5
+        console.log("El precio final es $" + resultado2)
+    }else{
+        console.log("El precio final es $" + resultado2)
+    }
 }else if(age3>=12 && age3<= 65){
     resultado2= 8
+    if(dia==="martes"){
+        resultado2= resultado2*0.5
+        console.log("El precio final es $" + resultado2)
+    }else{
+        console.log("El precio final es $" + resultado2)
+    }
 }else{
     console.log("No es edad valida")
-}
+    }
 
-if(dia==="martes"){
-    resultado = resultado2*0.5
-    console.log("El precio final es " + resultado2)
+//Ejercicio 27
+/*
+Si la batería es mayor a 80%, imprimir "Batería alta". Si está entre 20% y 80%, imprimir "Batería media". Si
+es menor al 20%, imprimir "Batería baja, conecta el cargador"
+*/
+
+let bateria = 85
+
+if(bateria > 80 && bateria <=100){
+    console.log("Bateria alta")
+}else if(bateria>=20 && bateria<=80){
+    console.log("Bateria media")
+}else if(bateria >=0 && bateria < 20){
+    console.log("bateria baja, conecte el cargador")
 }else{
-    console.log("El precio final es " + resultado2)
+    console.log("numero no valido")
 }
 
+
+//Ejercicio 28
+/*
+Si el jugador tiene más de 1000 puntos es "Leyenda", entre 500 y 1000 es "Experto", entre 100 y 499 es
+"Principiante", menos de 100 es "Novato". Además, si tiene 500 puntos o más Y no ha perdido ninguna vida,
+imprimir también "¡Partida perfecta!"
+*/
+
+let puntos = 1900;
+let perdioVidas= true
+
+if(puntos>1000){
+    console.log("Leyenda")
+    if(!perdioVidas){
+        console.log("Partida perfecta!")
+    }
+}else if(puntos>=500 && puntos <=1000){
+    console.log("Experto")
+    if(!perdioVidas){
+        console.log("Partida perfecta!")
+    }
+}else if(puntos>=100 && puntos <500){
+    console.log("Principiante")
+    if(!perdioVidas){
+        console.log("Partida perfecta!")
+    }
+}else if(puntos >=0 && puntos<100){
+    console.log("Novato")
+    if(!perdioVidas){
+        console.log("Partida perfecta!")
+    }
+}else{
+    console.log("numero no valido")
+}
+
+//Ejercicio 29
+/*
+Validar que el nombre no esté vacío, que la edad sea mayor a 0, y que el email contenga "@". Si todo es
+correcto, imprimir "Formulario enviado". Si algo falla, imprimir qué campo es el problema
+*/
+
+let name1 = "";
+let age4 = -9;
+let email = "natagmail.com";
+
+if(name1!=="" && age4>0 && email.includes("@")){
+    console.log("Formulario enviado")
+}else{
+    if(name1===""){
+        console.log("Error en el formulario, en el campo nombre")
+    }if(age4<=0){
+        console.log("Error en el formulario, en el campo edad")
+    }if (!email.includes("@")){
+        console.log("Error en el formulario, en el campo email")
+    }
+}
+
+//Ejercicio 30
+/*
+Para aprobar un préstamo, el cliente debe tener más de 21 años, ingresos mayores a $2000 mensuales, NO
+tener deudas pendientes, y llevar más de 6 meses en su empleo actual. Si cumple todo, imprimir "Préstamo
+aprobado". Si no, imprimir "Préstamo denegado" e indicar cuáles condiciones no cumplió
+*/
+
+let age5= 35;
+let ingresos1= 20000;
+let deudas = false;
+let tiempoEmpleado= 7;
+
+if(age5>21 && ingresos1>2000 && !deudas && tiempoEmpleado > 6){
+    console.log("Prestamo aprobado")
+}else{
+    console.log("prestamo denegado")
+    if(age5<=21){
+        console.log("no cumple condicion de edad")
+    }if(ingresos1<=2000){
+        console.log("no cumple condicion de ingresos")
+    }if (deudas){
+        console.log("posee deudas")
+    }if (tiempoEmpleado<=6){
+        console.log("tiene empleado menos de 6 meses")
+    }
+}
