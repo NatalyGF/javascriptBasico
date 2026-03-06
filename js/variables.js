@@ -98,3 +98,125 @@ if(DNI && newAge>=18 && nacionalidad){
     console.log("No puedes votar")
 }
 
+// Ejercicio 21 — Login de usuario
+/*Si el usuario es "jerel" Y la contraseña es "1234", imprimir "Sesión iniciada". Si el usuario es correcto pero la
+contraseña no, imprimir "Contraseña incorrecta". Si el usuario tampoco es correcto, imprimir "Usuario no
+encontrado".*/
+
+let user = "jerely";
+let password = "12346";
+
+if(user==="jerel"&& password==="1234"){
+    console.log("sesion iniciada")
+} else if (user==="jerel" && password!="1234"){
+    console.log("contraseña incorrecta")
+}else{
+    console.log("usuario no encontrado")
+}
+
+//Ejercicio 22
+/*
+Si el total de compra es mayor a $50 O si el cliente tiene membresía premium, el envío es gratis. Si no
+cumple ninguna de las dos condiciones, imprimir que el envío cuesta $5
+*/
+
+let premiumMembership = false;
+let compra = 60;
+
+if(compra>50 || premiumMembership){
+    console.log("Tu envio es gratis")
+}else{
+    console.log("Tu envio cuesta $5")
+}
+
+//Ejercicio 23
+/*
+Para adoptar una mascota, la persona debe tener más de 18 años, NO vivir en apartamento Y tener
+ingresos mayores a $1000. Si cumple todo, imprimir que puede adoptar. Si no, que no cumple los requisitos
+*/
+
+let apartment = false;
+let age2= 19;
+let ingresos = 1000;
+
+if(!apartment && age2>18 && ingresos>1000){
+    console.log("Puedes adorptar")
+}else{
+    console.log("No tienes las condiciones para adoptar")
+}
+
+//Ejercicio 24
+/*
+Según la operación indicada ("sumar", "restar", "multiplicar", "dividir"), calcular el resultado entre dos
+números e imprimirlo. Si se intenta dividir entre cero, imprimir un mensaje de error
+*/
+
+let operacion = "division";
+const num1 = 0;
+const num2 = 10;
+let resultado = 0;
+
+if(operacion==="sumar"){
+    resultado =num1 + num2
+    console.log("La suma es: "+ resultado)
+}else if (operacion === "restar"){
+    resultado = num1 - num2
+    console.log("La resta es: "+ resultado)
+}else if (operacion=== "multiplicacion"){
+    resultado = num1 *num2
+    console.log("La multiplicacion es: "+ resultado)
+}else if (operacion==="division"&& num2!=0){
+    resultado = num1 / num2
+    console.log("La division es: "+ resultado)
+}else{
+    console.log("Error, no se puede dividir por cero")
+}
+
+//Ejercicio 25
+/*
+Dado un mes en número del 1 al 12, imprimir la estación del año correspondiente: Invierno (12, 1, 2),
+Primavera (3–5), Verano (6–8), Otoño (9–11). Si el número no está entre 1 y 12, imprimir que no es un mes
+válido
+*/
+
+let estacion = 0;
+
+if(estacion===12 || estacion === 1 || estacion ===2){
+    console.log("Es invierno")
+}else if(estacion>=3 && estacion <= 5){
+    console.log("Es Primavera")
+}else if ( estacion >=6 && estacion <= 8){
+    console.log( "Es verano")
+}else if (estacion >=9 && estacion <= 11){
+    console.log( "Es otoño")
+}else{
+    console.log("No es un mes valido")
+}
+
+//Ejercicio 26
+/*
+Niños menores de 12 pagan $3. Adultos mayores de 65 pagan $4. Todos los demás pagan $8. Además, si
+es martes, todos pagan la mitad del precio. Imprimir el precio final
+*/
+
+let age3= 67;
+let dia = "martes";
+let resultado2=0;
+
+if(age3>0 && age3<12){
+    resultado2 = 3
+}else if(age3>65){
+    resultado2 = 4
+}else if(age3>=12 && age3<= 65){
+    resultado2= 8
+}else{
+    console.log("No es edad valida")
+}
+
+if(dia==="martes"){
+    resultado = resultado2*0.5
+    console.log("El precio final es " + resultado2)
+}else{
+    console.log("El precio final es " + resultado2)
+}
+
