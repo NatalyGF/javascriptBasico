@@ -1,1 +1,1 @@
-console.log("Explicación función flecha")
+console.log("Explicación función flecha");
