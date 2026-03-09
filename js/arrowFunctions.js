@@ -1,0 +1,1 @@
+console.log("Explicación función flecha")
