@@ -93,3 +93,84 @@ console.log(nombre2.toLowerCase().includes("an"))
 const concatenar = nombre.concat(" ", apellido);
 
 console.log(concatenar)
+
+//////////////////////////////////////////////////////////////////////////////
+
+/* 
+Ejercicio 1
+Creá un objeto que represente un usuario con nombre, apellido y email. 
+Agregale un método que use template literals para mostrar la presentación completa. 
+Agregale otro método que convierta el email a minúsculas antes de mostrarlo.
+■ Investigá: ¿Qué es typeof y para qué sirve? 
+Usalo para mostrar qué tipo de dato es cada propiedad del objeto.
+*/
+
+const usuario1 = {
+    nombre: "Nata",
+    apellido: "Gutierrez",
+    email: "Natagutty@gmail.com",
+    literalsTemplate(){
+        return `El nombre de usuario es ${usuario1.nombre}, su apellido es ${usuario1.apellido} y su email es ${this.emailMinusculo()}`
+    },
+    emailMinusculo(){
+        return usuario1.email.toLowerCase()
+    }
+
+}
+
+console.log(usuario1.literalsTemplate());
+
+console.log(typeof usuario1.nombre);
+console.log(typeof usuario1.apellido);
+console.log(typeof usuario1.email);
+console.log(typeof usuario1.literalsTemplate());
+console.log(typeof usuario1.emailMinusculo());
+
+
+/* 
+Ejercicio 2
+Creá un objeto que represente un producto con nombre, precio y stock. 
+Agregale un método que use un ternario para mostrar si hay stock disponible o no. 
+Agregale otro método que muestre el nombre del producto siempre en mayúsculas.
+■ Investigá: ¿Qué hace .toFixed(2)? Usalo para mostrar el precio siempre con dos decimale
+*/
+
+const producto1 = { 
+    nombre: "Libro",
+    precio: 15000,
+    stock: 10,
+    stockDisponible(){
+        return producto1.stock >0 ? `Hay ${producto1.stock} ${producto1.nombreMay()} disponibles, con un costo de ${producto1.precio.toFixed(2)} cada uno` : "No hay stock disponible"
+    },
+    nombreMay(){
+        return producto1.nombre.toUpperCase()
+    }
+}
+
+console.log(`${producto1.stockDisponible()}`)
+
+/* 
+Ejercicio 3
+Creá un objeto que represente un alumno con nombre, apellido y nota. Agregale un método que
+use if/else para mostrar si aprobó o desaprobó. La nota mínima para aprobar es 6. El mensaje
+debe incluir el nombre completo armado con template literals.
+■ Investigá: ¿Qué es el operador &&? Usalo para validar que la nota sea un número mayor o igual a 0 antes
+de evaluar si aprobó
+*/
+
+const alumno = {
+    nombre: "Nata",
+    apellido: "Gutierrez",
+    nota: 8,
+    aprobar(){
+        if(this.nota >= 6 && this.nota <= 10){
+            return `El estudiante ${this.nombre} ${this.apellido} aprobo con una nota de ${this.nota}`;
+        } else{
+            return `El estudiante ${this.nombre} ${this.apellido} no aprobo`;
+        }
+    }
+
+
+}
+
+console.log(alumno.aprobar());
