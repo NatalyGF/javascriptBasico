@@ -163,7 +163,7 @@ const alumno = {
     apellido: "Gutierrez",
     nota: 8,
     aprobar(){
-        if(this.nota >= 6 && this.nota <= 10){
+        if(typeof this.nota === "number" && this.nota >= 6){
             return `El estudiante ${this.nombre} ${this.apellido} aprobo con una nota de ${this.nota}`;
         } else{
             return `El estudiante ${this.nombre} ${this.apellido} no aprobo`;
@@ -174,3 +174,430 @@ const alumno = {
 }
 
 console.log(alumno.aprobar());
+
+/* 
+Ejercicio 4
+Creá un objeto que represente una cuenta bancaria con titular y saldo. 
+Agregale un método que reciba un monto y lo deposite. Agregale otro método que use if/else
+para retirar dinero solo si hay saldo suficiente. 
+Todos los mensajes deben usar template literals.
+■ Investigá: ¿Qué hace Math.abs()? 
+Usalo para mostrar la diferencia entre el monto solicitado y el saldo
+disponible cuando no haya fondos.
+*/
+
+const cuentaBancaria = {
+    titular: "Nata Gutierrez",
+    saldo: 50000000,
+    agregarSaldo(deposito){
+        this.saldo = this.saldo + deposito
+        return `Deposito exitoso, su nuevo saldo es: ${this.saldo}`
+    },
+    retirarSaldo (retiro){
+        if(this.saldo >= retiro){
+            this.saldo = this.saldo - retiro
+            return `Retiro exitoso, su nuevo saldo es: ${this.saldo}`
+        }else{
+            const diferencia = Math.abs(this.saldo - retiro)
+            return`Usted no tiene saldo suficiente para hacer el retiro, tiene una diferencia de: ${diferencia}`
+
+        }
+    }
+}
+
+console.log(cuentaBancaria.agregarSaldo(1000000));
+console.log(cuentaBancaria.retirarSaldo(60000000));
+
+/* 
+Ejercicio 5
+Creá un objeto que represente un empleado con nombre, puesto y salario. 
+Agregale un método que use .toUpperCase() para mostrar el puesto en mayúsculas.
+Agregale otro método que use if/else para mostrar si el salario es alto (más de $200.000),
+ medio (entre $100.000 y $200.000) o bajo (menos de $100.000).
+■ Investigá: ¿Qué es el operador ||? 
+Usalo para mostrar un puesto por defecto si la propiedad puesto está vacía
+*/
+
+const empleado3 ={
+    nombre: "Nata",
+    puesto: "Project Management",
+    salario: 500000,
+    puestoUpperCase(){
+        if (typeof this.puesto ==! "string" || this.puesto == ""){
+            return "Su puesto es Secretaria"
+        } 
+        return `Tu puesto es: ${this.puesto.toUpperCase()}`;
+    },
+    rangoSalarial (){
+        if(this.salario > 200000){
+            return "Su salario es alto"
+        }else if (this.salario>= 1000000 && this.salario <= 200000) {
+            return "Su salario es medio"
+        }
+        return "Su salario es bajo"
+    }
+}
+
+console.log(empleado3.puestoUpperCase());
+console.log(empleado3.rangoSalarial());
+
+/* 
+Ejercicio 6
+Creá un objeto que represente un formulario de registro con nombre de usuario y contraseña.
+Agregale un método que use .trim() y .length con if/else para validar que el nombre 
+de usuario tenga entre 4 y 12 caracteres.
+Agregale otro que valide que la contraseña tenga al menos 8 caracteres.
+■ Investigá: ¿Qué hace .padStart()? Usalo para mostrar el largo de la contraseña relleno 
+con ceros a la izquierda, por ejemplo '08' en lugar de '8'.
+*/
+
+const formularioRegistro ={
+    usuario: "Natfalda",
+    password: "Galleta",
+    longitudUsuario(){
+        const usuariolongitud = this.usuario.trim()
+        if(usuariolongitud.length >= 4 && usuariolongitud.length <= 12){
+            return `Su usuario es valido y tiene ${usuariolongitud.length} caracteres`
+        }
+        return "Su usuario no tiene la longitud correcta"
+    },
+    longitudPassword(){
+        const passwordlongitud = this.password.trim()
+        if(passwordlongitud.length >= 8 ){
+            return `Su contraseña es valida y tiene ${passwordlongitud.length} caracteres`
+        }else{
+        const nuevoPass = this.password.padStart(8, 0)
+        return `Su contraseña no tiene la longitud correcta, ahora es ${nuevoPass}`
+        }
+
+    }
+}
+
+console.log(formularioRegistro.longitudUsuario());
+console.log(formularioRegistro.longitudPassword());
+
+/* 
+Ejercicio 7
+Creá un objeto que represente una canción con título, artista y duración en segundos. 
+Agregale un método que use variables internas para convertir la duración a minutos 
+y segundos y la muestre con template literals. 
+Agregale otro método que use un ternario para mostrar si la canción dura más
+o menos de 3 minutos (180 segundos).
+■ Investigá: ¿Qué hace Math.floor()? Necesitás usarlo para obtener los minutos enteros 
+al convertir segundos.
+*/
+
+const cancion = {
+    titulo: "Magic",
+    artista: "ColdPlay",
+    duracion: 285,
+    duracionMinutos (){
+        const minutos = Math.floor(this.duracion/60);
+        const segundos = this.duracion - (minutos*60);
+
+        return `La cancion dura ${minutos} minutos con ${segundos} segundos`
+
+    },
+    duraMucho(){
+        const tresMinutos = 180;
+        return this.duracion > tresMinutos ? "La canción dura mas de 3 minutos" : "La cancion dura menos de 3 minutos"
+    }
+}
+
+console.log(cancion.duracionMinutos());
+console.log(cancion.duraMucho());
+
+/* 
+Ejercicio 8
+Creá un objeto que represente un auto con marca, modelo y kilometraje. 
+Agregale un método que use if/else para mostrar si el auto necesita service urgente 
+(más de 10.000 km), service próximo (entre 7.500 y 10.000 km) o está al día 
+(menos de 7.500 km). 
+Agregale otro método que muestre la descripción completa del auto usando template literals
+con el modelo siempre en mayúsculas.
+■ Investigá: ¿Qué es el operador % (módulo)? Usalo para mostrar cuántos km le faltan al auto para llegar al
+próximo múltiplo de 2.500 km.
+*/
+
+const auto = {
+    marca: "Nissan",
+    modelo: "March",
+    kilometraje: 1000,
+    servicio(){
+        if (this.kilometraje > 10000){
+            return "Necesita servicio Urgente"
+        }else if (this.kilometraje >= 7500 && this.kilometraje <= 10000){
+            return "Necesitará servicio proximamente"
+        }
+        return "Servicio al dia"
+    },
+    descripcionAuto (){
+        const kilometros = 2500;
+        const resto = this.kilometraje % kilometros;
+        if(resto === 0){
+            return `Su auto es de la marca ${this.marca}, modelo ${this.modelo.toUpperCase()} 
+        y tiene un kilometraje de ${this.kilometraje} y le faltan 0 kilometros para llegar
+        al proximo multiplo de 2500`
+        }
+        return `Su auto es de la marca ${this.marca}, modelo ${this.modelo.toUpperCase()} 
+        y tiene un kilometraje de ${this.kilometraje} y le faltan ${kilometros-resto} kilometros
+        para el proximo multiplo de 2500`
+    }
+}
+
+console.log(auto.servicio());
+console.log(auto.descripcionAuto());
+
+/* 
+Ejercicio 9
+Creá un objeto que represente un mensaje de chat con remitente, texto y leído (booleano).
+Agregale un método que use un ternario para mostrar el estado del mensaje como 'leído' 
+o 'no leído'. 
+Agregale otro método que use .length con if/else para avisar si el mensaje es demasiado
+largo (más de 140 caracteres).
+■ Investigá: ¿Qué hace el operador ! (negación)? Usalo para cambiar el estado de leído a no leído y
+viceversa dentro de un método.
+*/
+
+const chat = {
+    remitente: "Flyr",
+    texto: "Le avisamos que jugamos con sus sentimientos y no tendrán bono",
+    leido: !true,
+    mensajeLeido (){
+        return this.leido ? "Mensaje leido" : "mensaje no leido"
+    },
+    longitudMensaje (){
+        const longitudTexto = this.texto.length
+        if(longitudTexto > 140){
+            return "El mensaje es demasiado largo"
+        }
+        return `El mensaje es corto y tiene ${longitudTexto} caracteres`
+    }
+}
+console.log(chat.mensajeLeido());
+console.log(chat.longitudMensaje());
+
+/* 
+Ejercicio 10
+Creá un objeto que represente un empleado con nombre y lista de habilidades 
+guardadas como un string separado por comas. 
+Agregale un método que use .split() para mostrar cuántas habilidades tiene. 
+Agregale otro método que use .includes() con if/else para verificar si tiene una habilidad
+específica que reciba como parámetro.
+■ Investigá: ¿Qué diferencia hay entre .includes() en un string y en el resultado de 
+.split()? 
+Probá buscar una habilidad con espacios antes o después y fijate qué pasa si no usás 
+.trim() primero.
+
+El include lo que hace es buscar una palabra que yo le diga, mientras el split
+separa un string
+El trim elimina los espacios en blancoo
+*/
+
+const empleado = {
+    nombre: "Nataly",
+    habilidades: "fantastica, increible, juiciosa, deberia ganar mas",
+    cualidades (){
+        const arrayHabilidades = this.habilidades.split(',') 
+        
+        return `tiene ${arrayHabilidades.length} habilidades`
+    },
+    tieneHabilidad(habilidad){
+        const habiilidadProcesada =habilidad.trim()
+       return empleado.habilidades.includes(habiilidadProcesada) ? "Si tiene la habilidad" : "No tiene esa habilidad"
+    }
+
+}
+
+console.log(empleado.cualidades());
+console.log(empleado.tieneHabilidad(" fantastica "))
+
+/* 
+Ejercicio 11
+Creá un objeto que represente una tienda con nombre, dirección y si está abierta. 
+Agregale un método que use .toUpperCase() para mostrar el nombre de la tienda. 
+Agregale otro método que use un ternario para mostrar si la tienda está abierta o cerrada.
+■ Investigá: ¿Qué es la concatenación de métodos (method chaining)? Intentá escribir 
+.trim().toUpperCase() en una sola línea sobre el nombre de la tienda
+*/
+
+const tienda ={
+    nombre: " La tiendita confiable ",
+    direccion: "calle 37 a # 35 a 34",
+    abierta: true,
+    nombreMayus () {
+        return `El nombre de la tienda es ${this.nombre.trim().toUpperCase()};`
+    },
+    estadoTienda () {
+        return this.abierta ? "La tienda esta abierta" : "La tienda esta cerrada";
+    }
+}
+
+console.log(tienda.nombreMayus());
+console.log(tienda.estadoTienda());
+
+/*
+Ejercicio 12
+Creá un objeto que represente un pasajero con nombre, número de asiento y peso del equipaje en kilos. 
+ * Agregale un método que use template literals para mostrar los datos del pasajero. 
+ * Agregale otro método que use if/else para calcular el cargo extra: el equipaje es gratuito hasta 23 kg, 
+ * y por cada kilo extra se cobran $15. ■ Investigá: ¿Qué hace Math.max()? Usalo para calcular los kilos de exceso sin 
+ * necesitar un if/else para ese cálculo puntual. realiza ese ejercicio
+ */
+
+
+const pasajero={
+    nombre: "Luis",
+    asiento: 25,
+    pesoEquipaje: 35,
+    showDataPax (){
+        return `${this.nombre} tiene el asiento ${this.asiento} y lleva ${this.pesoEquipaje} kg de equipaje`
+    },
+    calculateExtraPriceBaggage(){
+        const maxBaggage = 23;
+        const costBaggage = 15;
+        const exedeEquipaje = Math.max(0, this.pesoEquipaje - maxBaggage);
+        return exedeEquipaje > 0 ? `El valor del cargo adicional es: ${exedeEquipaje * costBaggage} dolares`:
+                                    'no tienes cargo adicional'
+    }
+}
+
+console.log(pasajero.calculateExtraPriceBaggage());
+
+/* 
+Ejercicio 13
+Creá un objeto que represente un libro con título, autor y cantidad de páginas. 
+Agregale un método que use .slice() para mostrar solo los primeros 10 caracteres del título
+seguidos de '...' si el título es más largo. 
+Agregale otro método con if/else para clasificarlo como lectura corta (menos de 150
+páginas), media (entre 150 y 400 páginas) o larga (más de 400 páginas).
+■ Investigá: ¿Qué hace .charAt(0)? 
+Usalo para mostrar la inicial del autor junto al apellido, por ejemplo 'J.Rowling'.
+*/
+
+const libro = {
+    titulo: "Harry Potter y la piedra filosofal",
+    autor: "J.K Rowling",
+    paginas: 223,
+    tituloCorto (){
+        const longitudTitulo = this.titulo.length;
+        if (longitudTitulo > 10){
+            return `El titulo es ${this.titulo.slice(0,10) + "..."}`
+        }
+        return `El titulo es: ${this.titulo}`
+    },
+    clasificacionLectura (){
+        if (this.paginas < 150){
+            return "Es una lectura corta";
+        }else if( this.paginas >= 150 && this.paginas <= 400){
+            return "Es una lectura media";
+        }
+        return "Es una lectura larga"
+    },
+    metodoChart(){
+        const inicial = this.autor.charAt(0);
+        const autorArray = this.autor.split(" ");
+        return `El autor es ${inicial}.${autorArray[1]}`
+    }
+}
+
+console.log(libro.tituloCorto());
+console.log(libro.clasificacionLectura());
+console.log(libro.metodoChart());
+
+/* 
+Ejercicio 14
+Creá un objeto que represente un jugador con nombre, nivel y puntos. 
+Agregale un método que reciba puntos ganados y los sume. 
+Usá variables internas y if/else para verificar si los puntos
+alcanzan para subir de nivel: se necesitan 1.000 puntos por nivel. 
+Si se sube de nivel, los puntos vuelven a 0. 
+Mostrá todos los mensajes con template literals.
+■ Investigá: ¿Cómo funciona el operador % (módulo) para calcular el resto? 
+Usalo para que los puntos que sobran después de subir de nivel no se pierdan 
+sino que queden acumulados.
+*/
+
+const jugador = {
+    nombre: "Nata",
+    nivel: 3,
+    puntos: 500,
+    nuevosPuntos (newPoints){
+        this.puntos = this.puntos + newPoints
+        const puntosPorNivel = 1000;
+        if (this.puntos >=1000){
+            upgradeNivel = Math.floor(this.puntos/puntosPorNivel);
+            this.nivel = this.nivel + upgradeNivel;
+            this.puntos = this.puntos % 1000;
+            return `Felicidades has subido a nivel ${this.nivel} y le quedan ${this.puntos} puntos`
+        }
+        return `Sus nuevos puntos son ${this.puntos}, no alcanza para subir de nivel`
+    }
+}
+
+console.log(jugador.nuevosPuntos(5));
+
+/* 
+Ejercicio 15
+Creá un objeto que represente un restaurante con nombre, tipo de cocina 
+y calificación del 1 al 5.
+Agregale un método que use .replace() para cambiar espacios por guiones en el nombre 
+y pasarlo a minúsculas, mostrándolo como si fuera una URL. 
+Agregale otro método con if/else para mostrar la calificación en texto:
+ 1 es 'muy malo', 2 es 'malo', 3 es 'regular', 4 es 'bueno' y 5 es 'excelente'.
+■ Investigá: ¿Cuál es la diferencia entre .replace() y .replaceAll()? 
+Probá qué pasa si el nombre del restaurante tiene más de un espacio.
+*/
+
+const restaurante = {
+    nombre: "La mejor playita",
+    tipoCocina: "Tradicional Colombiana",
+    calificacion: 3,
+    modoUrl (){
+        return `https://www.${this.nombre.replaceAll(" ", "-").toLowerCase()}.com`
+    },
+    calificacionRestaurante(){
+        if(this.calificacion === 1){
+            return "La calificación del restaurante es muy malo"
+        }else if(this.calificacion === 2){
+            return "La calificación del restaurante es malo"
+        }else if(this.calificacion === 3){
+            return "La calificación del restaurante es regular"
+        }else if(this.calificacion === 4){
+            return "La calificación del restaurante es bueno"
+        }
+        return "La calificación del restaurante es excelente"
+    }
+}
+console.log(restaurante.modoUrl())
+console.log(restaurante.calificacionRestaurante());
+
+/* 
+Ejercicio 16
+Creá un objeto que represente un paciente con nombre, temperatura y presión arterial. 
+Agregale un método que use if/else con variables internas para diagnosticar: 
+la temperatura normal es entre 36 y 37.5 grados, y la presión normal es entre 60 y 120. 
+Si algún valor está fuera del rango, mostrá cuál es el problema. 
+Mostrá el diagnóstico completo usando template literals.
+■ Investigá: ¿Qué hace el operador && dentro de un if? Usalo para verificar ambas 
+condiciones (temperatura Y presión) en una sola línea
+*/
+
+const paciente = {
+    nombre: "Paquita",
+    temperatura: 38,
+    presion: 110,
+    diagnostico () {
+        if ((this.temperatura >= 36 && this.temperatura <= 37.5) && (this.presion >= 60 && this.presion <= 120)){
+            return "Usted tiene condiciones normales"
+        } else {
+            if (this.temperatura < 36 || this.temperatura > 37.5){
+                return "Su temperatura no esta en rangos normales";
+            }if (this.presion < 60 && this.presion > 120){
+                return "Su presion no esta en rangos normales"
+            }
+        }
+    }
+}
+
+console.log(paciente.diagnostico())
