@@ -601,3 +601,172 @@ const paciente = {
 }
 
 console.log(paciente.diagnostico())
+
+/* 
+Ejercicio 17
+Creá un objeto que represente un cupón de descuento con código, 
+porcentaje y si está activo.
+Agregale un método que reciba un precio y use if/else para aplicar el descuento solo 
+si el cupón está activo y mostrar el precio final. Si no está activo, 
+mostrar 'Cupón inválido'. Agregale otro método que muestre el código siempre en 
+mayúsculas con .toUpperCase().
+■ Investigá: ¿Qué hace .toFixed(2)? 
+Usalo para que el precio final siempre muestre dos decimales aunque el resultado sea exacto.
+*/
+
+const cuponDescuento = {
+    codigo: "Promo50",
+    porcentaje: 0.5,
+    activo: true,
+    precioFinal (precio) {
+        if (this.activo){
+            const precioFinal = (precio * (1 - this.porcentaje));
+            return `El precio final con descuento es: ${precioFinal.toFixed(2)}`;
+        }
+        return "Cupón inválido"
+    },
+    codigoMayus (){
+        return `Tu codigo es: ${this.codigo.toUpperCase()}`
+    }
+}
+
+console.log(cuponDescuento.precioFinal(1000));
+console.log(cuponDescuento.codigoMayus());
+
+/* 
+Ejercicio 18
+Creá un objeto que represente un perfil de red social con nombre de usuario, 
+cantidad de seguidores y verificado (booleano). 
+Agregale un método que use un ternario para mostrar el nombre con o sin el simbolo
+de verificado. 
+Agregale otro método con if/else para clasificar la cuenta: menos de 1.000 seguidores 
+es 'cuenta nueva', entre 1.000 y 10.000 es 'cuenta en crecimiento', 
+entre 10.000 y 100.000 es 'influencer', y más de 100.000 es 'cuenta masiva'.
+■ Investigá: ¿Qué es la igualdad estricta === y en qué se diferencia de ==? 
+Usá === en todas tus comparaciones y explicá por qué es mejor.
+*/
+
+const perfilSocial = {
+    nombreUsuario: "Natfalda",
+    seguidores: 234,
+    verificado: true,
+    simboloVerificado () {
+        const check = "✓";
+        return this.verificado ? `${this.nombreUsuario} ${check}` : this.nombreUsuario
+    },
+    clasificarCuenta () {
+        if (this.seguidores < 1000){
+            return "Es una cuenta nueva";
+        }else if (this.seguidores >= 1000 && this.seguidores <= 10000){
+            return "Cuenta en crecimiento"
+        }else if (this.seguidores > 10000 && this.seguidores <= 100000){
+            return "Influencer"
+        }
+        return "Cuenta masiva"
+    }
+}
+
+console.log(perfilSocial.simboloVerificado());
+console.log(perfilSocial.clasificarCuenta());
+
+/* 
+Ejercicio 19
+Creá un objeto que represente un vuelo con origen, destino, hora de salida 
+y si está retrasado.
+Agregale un método que use template literals para mostrar la información del vuelo. 
+Agregale otro método que use un ternario para mostrar el estado como 'a tiempo' o 'retrasado'. 
+Agregale un tercer método con if/else para mostrar la zona horaria del origen: 
+si es 'Buenos Aires' mostrar 'GMT-3', si es 'Madrid' mostrar 'GMT+1', si es 'Nueva York' 
+mostrar 'GMT-5', y para cualquier otro origen mostrar 'zona horaria desconocida'.
+■ Investigá: ¿Para qué sirve la cláusula else if? Es lo que necesitás para manejar 
+los tres casos de zona horaria en un solo bloque.
+*/
+
+const vuelo = {
+    origen: "Madrid",
+    destino: "Bogota",
+    horaDeSalida: "10:00",
+    retrasado: false,
+    informacion () {
+        return `El origen de vuelo es: ${this.origen}, con destino ${this.destino}
+        sale a las ${this.horaDeSalida} y ${this.infoRestraso()}`
+    },
+    infoRestraso (){
+        return this.retrasado ? "esta retrasado": "no esta retrasado";
+    },
+    zonaHoraria () {
+        if (this.origen === "Buenos Aires"){
+            return "La zona horaria es GMT-3"
+        }else if (this.origen === "Madrid"){
+            return "La zona horaria es GMT+1"
+        }else if (this.origen === "Nueva York"){
+            return "La zona horaria es GMT-5"
+        }
+        return "zona horaria desconocida"
+    }
+}
+
+console.log(vuelo.informacion());
+console.log(vuelo.zonaHoraria());
+
+/* 
+Ejercicio 20
+Creá un objeto que represente una receta con nombre, ingredientes como string 
+separado por comas y tiempo de preparación en minutos. 
+Agregale un método que use .split() para mostrar los ingredientes uno por uno. 
+Agregale otro método con if/else para clasificar la receta como rápida
+(menos de 15 minutos), normal (entre 15 y 45 minutos) o elaborada (más de 45 minutos).
+■ Investigá: ¿Qué hacen .trimStart() y .trimEnd()? 
+Probá aplicar .trim() al string de ingredientes completo
+antes del .split() para limpiar espacios accidentales
+*/
+
+const receta = {
+    nombre: "Burritos",
+    ingredientes: " tortilla, aguacate, cebolla, tomate, nachos, pollo, salsas, queso",
+    tiempo: 120,
+    ingredienteSeparados () {
+        const arrayIngredientes = this.ingredientes.trim().split(",")
+        console.log(arrayIngredientes)
+        return `los ingredientes son ${arrayIngredientes} y tiene ${arrayIngredientes.length} ingredientes`
+    },
+    tipoReceta (){
+        if (this.tiempo < 15){
+            return "Receta rapida"
+        }else if (this.tiempo >= 15 && this.tiempo <=45){
+            return "Receta normal"
+        }
+        return "Receta elaborada"
+    }
+}
+
+console.log(receta.ingredienteSeparados());
+console.log(receta.tipoReceta());
+
+/* 
+Ejercicio 21
+Creá un objeto que represente un gimnasio con nombre, precio mensual y si tiene pileta. Agregale
+un método que use un ternario para mostrar si incluye pileta en el plan. Agregale otro método que
+reciba la cantidad de meses y calcule el costo total mostrándolo con template literals.
+■ Investigá: ¿Qué hace Number()? Usalo dentro del método para asegurarte de que el parámetro de meses
+sea siempre tratado como número.
+
+*/
+
+const gimnasio = {
+    nombre: "Xtreme fitness",
+    precio: 100000,
+    pileta: false,
+    incluyePileta(){
+        return this.pileta ? "El plan incluye pileta" : "El plan no incluye pileta"
+    },
+    costo (meses) {
+        const mesesN = Number(meses);
+        const costoTotal = mesesN * this.precio;
+        return `El costo total por ${mesesN} meses, es: ${costoTotal}`
+    }
+
+}
+
+console.log(gimnasio.incluyePileta());
+console.log(gimnasio.costo(7));
