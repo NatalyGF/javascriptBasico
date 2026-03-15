@@ -770,3 +770,331 @@ const gimnasio = {
 
 console.log(gimnasio.incluyePileta());
 console.log(gimnasio.costo(7));
+
+/* 
+Ejercicio 22
+Creá un objeto que represente un estudiante con nombre, carrera y promedio. Agregale un método
+que use .toLowerCase() para normalizar el nombre de la carrera antes de mostrarlo. Agregale otro
+método con if/else para mostrar el estado académico: promedio menor a 4 es 'en riesgo
+académico', entre 4 y 5.9 es 'puede rendir con previa', y 6 o más es 'habilitado para rendir el final'.
+■ Investigá: ¿Qué hace Math.round()? Usalo para redondear el promedio antes de mostrarlo.
+
+*/
+
+const estudiante2 = {
+    nombre: "Nata",
+    carrera: "Ing. Quimica",
+    promedio: 8.5,
+    carreraLower (){
+        return `Tu carrera es: ${this.carrera.toLowerCase()}`;
+    },
+    estadoAcademico(){
+        const promedioRedondeado = Math.round(this.promedio) 
+        if (this.promedio < 4){
+            return `Usted esta en riesgo academico con ${promedioRedondeado}`;
+        }else if (this.promedio >= 4 && this.promedio <= 5.9){
+            return `Usted puede rendir con previa, tiene un promedio de ${promedioRedondeado}`;
+        }
+        return `Usted esta habilitado para rendir el final con un promedio de ${promedioRedondeado}`
+    },
+}
+
+console.log(estudiante2.carreraLower());
+console.log(estudiante2.estadoAcademico());
+
+/* 
+Ejercicio 23
+Creá un objeto que represente un producto de e-commerce con nombre, precio y categoría.
+Agregale un método que use .includes() con un ternario para mostrar si pertenece a la sección de
+ofertas: la categoría debe contener la palabra 'oferta' para que cuente. Agregale otro método que
+muestre el nombre del producto con la primera letra en mayúscula usando .slice() y
+.toUpperCase().
+■ Investigá: ¿Qué hace .startsWith()? Usalo para verificar si la categoría empieza con la letra 'o' y compará
+ese resultado con el de .includes().
+*/
+
+const ecommerce = {
+    nombre: "humidificador",
+    precio: 88000,
+    categoria: "oferta Hogar",
+    oferta () {
+        return this.categoria.includes("oferta") ? "Este producto pertenece a la sección ofertas" : "Este producto no pertenece a la sección ofertas"
+    },
+    primeraMayus () {
+        const primeraMayus = this.nombre.slice(0, 1).toUpperCase() + this.nombre.slice(1)
+        return `El nombre del producto es: ${primeraMayus}`
+    },
+    startWithO () {
+        
+        return this.categoria.startsWith("o", 0) ? "La categoría inicia con o" : "La categoría no inicia con o"
+    }
+}
+
+console.log(ecommerce.oferta()),
+console.log(ecommerce.primeraMayus());
+console.log(ecommerce.startWithO());
+
+/* 
+Ejercicio 24
+Creá un objeto que represente un sistema de turnos con nombre del cliente, servicio y hora. La
+hora se guarda como número (por ejemplo, 14 para las 14:00). Agregale un método que use .trim()
+para limpiar el nombre antes de guardarlo. Agregale otro método con if/else para verificar si la hora
+está dentro del horario de atención de 9 a 18: si está dentro mostrar 'Turno confirmado', si no
+mostrar 'Fuera de horario de atención'.
+■ Investigá: ¿Qué hace el operador ||? Usalo para que el método muestre 'Cliente sin nombre' si el campo
+viene vacío después del .trim()
+*/
+
+const turnos = {
+    cliente: " Nata ",
+    servicio: "Enseñanza",
+    hora: 15,
+    limpiarNombre () {
+        this.cliente = this.cliente.trim();
+        if (this.cliente === "" || this.cliente === "null"){
+            return "Cliente sin nombre";
+        }
+        return this.cliente;
+        
+    },
+    horaAtencion () {
+        return this.hora >= 9 && this.hora <= 18 ? "Turno confirmado" : "Fuera de horario de atención"
+     }
+}
+
+console.log(turnos.limpiarNombre());
+console.log(turnos.horaAtencion());
+
+/* 
+Ejercicio 25
+Creá un objeto que represente un vehículo de delivery con patente, nombre del repartidor y
+cantidad de entregas del día. Agregale un método que use un ternario para mostrar si puede tomar
+más pedidos: el límite diario es 20 entregas. Agregale otro método que muestre la patente siempre
+en mayúsculas y sin espacios usando .toUpperCase() y .replace().
+■ Investigá: ¿Cuál es la diferencia entre .replace() y .replaceAll()? Probá qué pasa si la patente tiene más
+de un espacio y usá el que corresponda.
+*/
+
+const vehiculoDelivery = {
+    patente: "Patente carrito solar",
+    nombre: "Alberto",
+    entregas: 19,
+    masPedidos () {
+        return this.entregas < 20 ? `Usted puede tomar ${20 - this.entregas} pedidos más` : "Cumplio el limite, no puede tomar mas entregas";
+    },
+    nombrePatente () {
+        return this.patente.toUpperCase().replaceAll(" ", "");
+    }
+}
+console.log(vehiculoDelivery.masPedidos());
+console.log(vehiculoDelivery.nombrePatente());
+
+/* 
+Ejercicio 26
+Creá un objeto que represente un examen con materia, alumno, respuesta correcta y respuesta del
+alumno. Agregale un método que use .trim() y .toLowerCase() para normalizar ambas respuestas
+antes de compararlas. Usá if/else para mostrar 'Correcto' o 'Incorrecto' con el nombre del alumno y
+la materia usando template literals.
+■ Investigá: ¿Cuál es la diferencia entre == y ===? Explicá cuál usarías para comparar las respuestas y por
+qué
+*/
+
+const examen = {
+    materia: "Quimica",
+    alumno: "Nata",
+    correctAnswer: " Fluor",
+    studentAnswer: "FluOR ",
+    normalizarAnswer () {
+        this.correctAnswer = this.correctAnswer.trim().toLowerCase();
+        this.studentAnswer = this.studentAnswer.trim().toLowerCase();
+        return `Respuesta correcta ${this.correctAnswer} y respuesta del alumno ${this.studentAnswer}`
+    },
+    respuesta() {
+        if (this.correctAnswer === this.studentAnswer) {
+            return `El alumno ${this.alumno} tuvo una respuesta CORRECTA en la materia ${this.materia}`
+        }
+        return `El alumno ${this.alumno} tuvo una respuesta INCORRECTA en la materia ${this.materia}`
+    }
+}
+
+console.log(examen.normalizarAnswer());
+console.log(examen.respuesta())
+
+/* 
+Ejercicio 27
+Creá un objeto que represente una notificación con título, mensaje y prioridad ('alta', 'media' o
+'baja'). Agregale un método que use if/else para mostrar el título en mayúsculas si la prioridad es
+alta, en formato normal si es media, y en minúsculas si es baja. Agregale otro método que use
+.length con un ternario para recortar el mensaje si supera los 50 caracteres, mostrando solo los
+primeros 50 seguidos de '...'.
+■ Investigá: ¿Qué hace .substring()? Compará cómo funciona con .slice() para recortar el mensaje y usá el
+que te parezca más claro.
+
+*/
+
+const notificacion = {
+    titulo: "Dia de informe",
+    mensaje: "Hoy es el día del informe, dale prioridad Hoy es el día del informe, dale prioridad",
+    prioridad: "alta",
+    mensajePrioritario () {
+        if (this.prioridad === "alta") {
+            return this.titulo.toUpperCase()
+        }else if (this.prioridad === "media"){
+            return this.titulo
+        }
+        return this.titulo.toLowerCase()
+    },
+    mensajeCortado () {
+        return this.mensaje.length > 50 ? this.mensaje.slice(0 , 50) + "..." : this.mensaje
+    }
+}
+
+console.log(notificacion.mensajePrioritario());
+console.log(notificacion.mensajeCortado());
+
+/* 
+Ejercicio 28
+Creá un objeto que represente una farmacia con nombre, dirección y turno (booleano que indica si
+está de turno esa noche). Agregale un método con un ternario para mostrar si está de turno.
+Agregale otro método que use .replace() para formatear la dirección reemplazando la abreviatura
+'Av.' por 'Avenida'.
+■ Investigá: ¿Qué hace .endsWith()? Usalo para verificar si la dirección termina con un número y 
+mostrar un mensaje distinto si no tiene numeración.
+*/
+
+const farmacia = {
+    nombre: "Farmatodo",
+    direccion: "Av. Santander 40-58",
+    turnoNoc: true,
+    turnoNocturno () {
+        return this.turnoNoc ? "Esta de turno esta noche" : "No esta de turno esta noche";
+    },
+    direccionModificada () {
+        return this.direccion.endsWith(0) ? this.direccion.replace("Av.", "Avenida") : `La direccion no termina en cero, ${this.direccion.replace("Av.", "Avenida")}`
+       
+    }
+}
+
+console.log(farmacia.turnoNocturno());
+console.log(farmacia.direccionModificada());
+
+/* 
+Ejercicio 29
+Creá un objeto que represente una cancha de fútbol con nombre, superficie y precio por hora.
+Agregale un método que reciba la cantidad de horas y use if/else para calcular el precio: si se
+reservan más de 3 horas se aplica un 20% de descuento, si no se cobra el precio normal. Mostrá el
+nombre de la cancha con .toUpperCase() en todos los mensajes.
+■ Investigá: ¿Qué hace Math.round()? Usalo para redondear el precio final al número entero más cercano y
+evitar decimales extraños.
+*/
+
+const canchaFutbol = {
+    nombre: "Arrayanes",
+    superficie: "40 m^2",
+    precioHora: 13500.82,
+    precioTotal (horas) {
+        const descuento = 0.2;
+        if (horas <= 3){
+            return `Tienes que pagar ${Math.round(this.precioHora * horas)} pesos en la cancha: ${this.nombre.toUpperCase()}`
+        }
+        return `Tienes que pagar ${Math.round((this.precioHora*horas)*(1-descuento))} pesos en la cancha: ${this.nombre.toUpperCase()}`
+    }
+}
+console.log(canchaFutbol.precioTotal(4));
+
+/* 
+Ejercicio 30
+Creá un objeto que represente un certificado con nombre del participante, curso y fecha. Agregale
+un método que use .toUpperCase() en el nombre y template literals para generar el texto oficial del
+certificado. Agregale otro método que use .length con if/else para verificar que el nombre no supere
+los 40 caracteres: si los supera mostrar 'Nombre demasiado largo para el certificado'.
+■ Investigá: ¿Qué hace .padEnd()? Usalo para rellenar el nombre con puntos hasta llegar exactamente a 40
+caracteres si es más corto, como se hace en los diplomas
+*/
+
+const certificado = {
+    participante: "Nata",
+    curso: "Programación",
+    fecha: "5/03/2026",
+    cerificadoOficial () {
+        return `¡Felicidades ${this.participante.toUpperCase()} has cumplido correctamente el curso en ${this.curso.toUpperCase()}!`
+    },
+    verificarNombre () {
+        if(this.participante.length >= 40) {
+            return "Nombre demasiado largo para el certificado"
+        }
+        return `Longitud del nombre OK para el certificado ${this.participante.padEnd(40, ".")}`
+
+    }
+}
+
+console.log(certificado.cerificadoOficial());
+console.log(certificado.verificarNombre());
+
+/* 
+Ejercicio 31
+Creá un objeto que represente una aplicación de delivery con nombre del local, categoría y tiempo
+estimado de entrega en minutos. Agregale un método que use un ternario para mostrar si la
+entrega es express (menos de 30 minutos) o normal. Agregale otro método con if/else para calcular
+el costo de envío según la distancia que recibe como parámetro: hasta 3 km cuesta $500, entre 3 y
+7 km cuesta $900, y más de 7 km cuesta $1.500.
+■ Investigá: ¿Qué son los if/else anidados? Usá ese concepto para agregar un caso especial: si la distancia
+supera los 15 km mostrar 'Zona sin cobertura' antes de calcular el costo
+*/
+
+const aplicacionDelivery = {
+    nombre: "Frisby",
+    categoria: "Alimentos",
+    tiempoEntrega: 60,
+    entrega () {
+        return this.tiempoEntrega < 30 ? "Entrega Express" : "Entrega normal";
+    },
+    costoEnvio (distancia) {
+        if (distancia <= 3){
+            return "tu costo de envío es $500"
+        }else if (distancia > 3 && distancia <= 7){
+            return "tu costo de envio es $900"
+        }else {
+            if (distancia > 15){
+                return "Zona sin cobertura"
+            }
+            return "Tu costo de envio es $1500"
+        }
+        
+    }
+}
+console.log(aplicacionDelivery.entrega());
+console.log(aplicacionDelivery.costoEnvio(15));
+
+/* 
+Ejercicio 32
+Creá un objeto que represente un ticket de soporte con número, descripción del problema y estado
+('abierto', 'en progreso' o 'cerrado'). Agregale un método con if/else para cambiar el estado al
+siguiente en la secuencia: 'abierto' pasa a 'en progreso', 'en progreso' pasa a 'cerrado', y si ya está
+'cerrado' mostrar 'El ticket ya está cerrado'. Agregale otro método que use .slice() para mostrar solo
+los primeros 30 caracteres de la descripción como resumen.
+■ Investigá: ¿Qué pasa cuando reasignás una propiedad de un objeto con =? Verificá que el estado del
+objeto cambia de verdad llamando al método dos veces seguidas
+*/
+
+const ticket = {
+    numero: 12345,
+    descripcion: "Problemas en consola cuando se ejecuta los test",
+    estado: "abierto",
+    newEstado () {
+        if (this.estado === "abierto") {
+            this.estado = "en progreso";
+            return `Su nuevo estado es ${this.estado}`
+        }else if (this.estado === "en progreso"){
+            this.estado = "cerrado";
+            return `Su nuevo estado es ${this.estado}`
+        }
+        return "Su ticket ya esta cerrado"
+    },
+    descripcionCorta () {
+        return `${this.descripcion.slice(0,30)+ "..."}`
+    }
+}
+
+console.log(ticket.newEstado());
+console.log(ticket.descripcionCorta());
