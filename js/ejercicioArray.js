@@ -45,3 +45,34 @@ const clasificarPrioridad = (ticket) => {
     for (const ticket of tickets){
         (clasificarPrioridad(ticket))
     }
+
+    const mostrarEstado = (ticket) => {
+        ticket.estado === "cerrado" ? console.log(`[CERRADO] ${ticket.id} | ${ticket.titulo}`) : 
+                                    console.log(`[ACTIVO] ${ticket.id} | ${ticket.titulo}`)
+    }
+
+    for (const ticket of tickets) {
+        mostrarEstado(ticket)
+    }
+
+    let abiertos = 0;
+    let enProgreso = 0;
+    let cerrados = 0;
+
+    for (const ticket of tickets){
+        if(ticket.estado.toLowerCase() === "abierto"){
+            abiertos = abiertos + 1; 
+        }else if (ticket.estado.toLowerCase() === "en progreso"){
+            enProgreso = enProgreso + 1;
+        }else if(ticket.estado.toLowerCase() === "cerrado"){
+            cerrados = cerrados +1;
+        }else {
+            console.log(`El ticket ${ticket.id} no contiene un estado valido`)
+        }
+        
+
+    }
+
+    console.log(`Abiertos: ${abiertos}`);
+    console.log(`En progreso: ${enProgreso}`);
+    console.log(`Cerrados: ${cerrados}`);
