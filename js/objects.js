@@ -1098,3 +1098,132 @@ const ticket = {
 
 console.log(ticket.newEstado());
 console.log(ticket.descripcionCorta());
+
+/* 
+Ejercicio 33
+Creá un objeto que represente una playlist con nombre, género y canciones guardadas como string
+separado por |. Agregale un método que use .split() para mostrar cuántas canciones tiene.
+Agregale otro método con if/else para mostrar la recomendación de volumen según el género:
+'rock' → 'Volumen alto, 80%', 'jazz' → 'Volumen medio, 50%', 'clasica' → 'Volumen bajo, 30%',
+cualquier otro género → 'Volumen a gusto'.
+■ Investigá: ¿Qué pasa si aplicás .trim() al string completo de canciones antes del .split()? Probá qué ocurre
+si algún nombre de canción tiene un espacio antes o después del separador |
+*/
+
+const playlist = {
+    nombre: " Nata Playlist ",
+    genero: "pop-rock",
+    canciones: " I'm yours | skyfull of stars | yellow | Best I ever had | Las de la intuición ",
+    numCanciones (){
+        numeCanciones = this.canciones.trim().split("|")
+        console.log(numeCanciones)
+        return `El número de canciones es: ${numeCanciones.length}`
+    },
+    volumen(){
+        if (this.genero.includes("rock")){
+            return "Volumen alto, 80%"
+        }else if (this.genero.includes("jazz")){
+            return "Volumen medio, 50%"
+        } else if (this.genero.includes("clasica")){
+            return "Volumen bajo, 30%"
+        } return 'Volumen a gusto'
+        
+    }
+
+}
+
+console.log(playlist.numCanciones());
+console.log(playlist.volumen());
+
+/* 
+Ejercicio 34
+Creá un objeto que represente un hotel con nombre, categoría en estrellas y precio por noche.
+Agregale un método que reciba la cantidad de noches y use if/else para aplicar descuento: menos
+de 3 noches sin descuento, entre 3 y 6 noches 10% de descuento, 7 o más noches 20% de
+descuento. Agregale otro método que use template literals y .repeat() para mostrar las estrellas del
+hotel visualmente con el símbolo de estrella.
+■ Investigá: ¿Qué hace .repeat()? Ya lo usás para las estrellas. Ahora investigá si podés usarlo para
+generar una barra visual con el carácter # según el porcentaje de descuento.
+*/
+
+const hotel = {
+    nombre: "El gran hotel de Budapest",
+    categoria: 5,
+    precioNoche: 1000000,
+    precioTotal(noches){
+        if (noches < 3){
+            return `El precio total es: ${noches * this.precioNoche}.`
+        }else if (noches >= 3 && noches <= 6){
+            return `El precio total es: ${(noches * this.precioNoche)* (1-0.1)}`
+        }else if (noches > 6){
+            return `El precio total es: ${(noches * this.precioNoche)* (1-0.2)}`
+        }return "No enviaste un numero de noches valido"
+    },
+    estrellas(){
+        return `El número de estrellas del hotel es: ${"☆".repeat(this.categoria)}`
+    }
+}
+
+console.log(hotel.precioTotal(10));
+console.log(hotel.estrellas())
+
+/* 
+Ejercicio 35
+Creá un objeto que represente un contrato con cliente, servicio y duración en meses. Agregale un
+método que reciba los meses restantes como parámetro y use if/else para mostrar si el contrato
+está vigente (más de 2 meses restantes), por vencer (1 o 2 meses restantes) o vencido (0 meses o
+menos). Mostrá todos los datos con template literals y el nombre del cliente siempre en
+mayúsculas.
+■ Investigá: ¿Qué hace el operador <=? Usalo en tus condiciones y explicá la diferencia con <
+*/
+
+const contrato = {
+    cliente: "Nataly",
+    servicio: "Tutorias",
+    duracion: 6,
+    vigencia(mesesRestantes){
+        if(mesesRestantes > 2){
+            return `Contrato vigente para el cliente ${this.cliente.toUpperCase()} por el servicio de ${this.servicio}`
+        }else if (mesesRestantes >=1 && mesesRestantes <= 2){
+            return `Contrato por vencer para el cliente ${this.cliente.toUpperCase()} por el servicio de ${this.servicio}`
+        }return `Contrato vencido para el cliente ${this.cliente.toUpperCase()} por el servicio de ${this.servicio}`
+    }
+
+}
+
+console.log(contrato.vigencia(2))
+
+/* 
+Ejercicio 36
+Creá un objeto que represente un chatbot con nombre y cuatro respuestas guardadas como un
+string separado por |. Agregale un método que use .split() e if/else para seleccionar una respuesta
+según el número que recibe como parámetro (1, 2, 3 o 4). Si el número está fuera de ese rango,
+mostrar 'Opción inválida'. Agregale otro método que muestre el nombre del bot con .toUpperCase()
+y la cantidad de respuestas disponibles.
+■ Investigá: ¿Qué hace el operador && dentro de un if? Usalo para validar dos condiciones a la vez: que el
+número recibido sea mayor a 0 Y menor o igual a 4.
+
+*/
+
+const chatbot = {
+    nombre: "El facilon",
+    respuestas: " Si | Claro | Por supuesto | Obvio ",
+    seleccionRespuesta (numero) {
+        const arrayRespuestas = this.respuestas.split("|")
+        if (numero === 1){
+            return `Tu respuesta es: ${arrayRespuestas[numero-1]}`
+        }else if (numero === 2) {
+            return `Tu respuesta es: ${arrayRespuestas[numero-1]}`
+        }else if (numero === 3) {
+            return `Tu respuesta es: ${arrayRespuestas[numero-1]}`
+        }else if (numero === 4) {
+            return `Tu respuesta es: ${arrayRespuestas[numero-1]}`
+        }return "Opcion invalida"
+    },
+    nombreBot(){
+        return `El nombre del bot es: ${this.nombre.toUpperCase()} y la cantidad de respuestas disponibles es ${this.respuestas.split("|").length}`
+    }
+}
+
+console.log(chatbot.seleccionRespuesta(1));
+console.log(chatbot.nombreBot());
