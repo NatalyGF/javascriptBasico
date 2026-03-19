@@ -76,3 +76,69 @@ const clasificarPrioridad = (ticket) => {
     console.log(`Abiertos: ${abiertos}`);
     console.log(`En progreso: ${enProgreso}`);
     console.log(`Cerrados: ${cerrados}`);
+
+const categorias = ["auth", "pagos", "productos", "notificaciones"];
+
+const verificarCategorias = (cat) => {
+    cat = cat.toLowerCase();
+    if(categorias.includes(cat)){
+        return `✅ La categoria ${cat} esta registrada`
+    } return `❌ La categoria ${cat} no esta registrada`
+
+}
+
+console.log(verificarCategorias("reportes"))
+
+// find
+
+/*
+const nombres = ["Juan", "Maria", "Pedro", "Ana", "Luis"];
+
+const verifyName = (name) => {
+    return nombres.find(n => n === name)
+    }
+
+    console.log(verifyName("jerel"));
+
+*/
+
+const buscarTicket = (idBuscado) => {
+    const resultado = tickets.find(ticket => ticket.id === idBuscado);
+    if(resultado != undefined){
+        return `Ticket encontrado: [${resultado.id}] ${resultado.titulo} - ${resultado.prioridad} - ${resultado.categoria}`
+    }return `❌ No existe nngun ticket con el id "${idBuscado}"`
+
+}
+
+console.log(buscarTicket("TKT-003"));
+
+let alta = 0;
+let ticketAbierto = 0;
+let altaAbierto = 0;
+
+const reporteFinal = () => {
+    for (const ticket of tickets) {
+        if(ticket.prioridad === "alta") {
+            alta = alta +1
+        }
+        if(ticket.estado === "abierto"){
+            ticketAbierto = ticketAbierto +1
+        }
+        if (ticket.prioridad === "alta" && ticket.estado === "abierto")
+            altaAbierto = altaAbierto +1
+
+    }
+console.log(`Total de tickets: ${tickets.length}`);
+console.log(`Prioridad alta: ${alta}`);
+console.log(`Tickets abiertos: ${ticketAbierto}`);
+
+    if(altaAbierto >= 3 ){
+        console.log( "Estado del sistema: CRITICO")
+    }else if ( altaAbierto >=1 && altaAbierto <= 2){
+        console.log( "Estado del sistema: ESTABLE" )
+    }else {    console.log( "Estado del sistema: ESTABLE") }
+}
+
+reporteFinal();
+
+

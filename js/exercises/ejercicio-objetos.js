@@ -1055,8 +1055,9 @@ const hotel = {
     categoria: 5,
     precioNoche: 1000000,
     precioTotal(noches){
+        const barraPorcentaje = "_".repeat(10)
         if (noches < 3){
-            return `El precio total es: ${noches * this.precioNoche}.`
+            return `El precio total es: ${noches * this.precioNoche} Su descuento visual es: ${barraPorcentaje} .`
         }else if (noches >= 3 && noches <= 6){
             return `El precio total es: ${(noches * this.precioNoche)* (1-0.1)}`
         }else if (noches > 6){
@@ -1065,6 +1066,10 @@ const hotel = {
     },
     estrellas(){
         return `El número de estrellas del hotel es: ${"☆".repeat(this.categoria)}`
+    },
+    porcentanje(){
+        
+
     }
 }
 
